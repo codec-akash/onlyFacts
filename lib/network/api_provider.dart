@@ -1,5 +1,5 @@
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
+import 'package:only_facts/env.dart';
 import 'package:only_facts/network/ap_response_handler.dart';
 
 class ApiProvider {
@@ -10,7 +10,9 @@ class ApiProvider {
   Future<Map<String, dynamic>> getCall(String endPoint) async {
     String urlString = baseUrl + endPoint;
     Uri url = Uri.parse(urlString);
-    final apiKey = dotenv.get("API_KEY");
+    const apiKey = bool.hasEnvironment("API_KEY")
+        ? String.fromEnvironment("API_KEY")
+        : apiKeyENV;
 
     try {
       var uriResponse = await client.get(

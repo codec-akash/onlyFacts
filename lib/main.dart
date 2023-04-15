@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:only_facts/screens/facts_main.dart';
 import 'package:only_facts/simple_bloc_observer.dart';
 
@@ -8,7 +7,6 @@ import 'bloc/bloc_facts/facts_bloc.dart';
 
 Future<void> main() async {
   Bloc.observer = SimpleBlocObserver();
-  await dotenv.load(fileName: "assets/.env");
   runApp(const MyApp());
 }
 
