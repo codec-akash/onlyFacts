@@ -4,11 +4,11 @@ import 'package:only_facts/network/api_provider.dart';
 class FactsRepo {
   Future<List<Facts>> getFacts() async {
     List<Facts> factsList = [];
-    var endPoint = "v1/facts?limit=10";
+    var endPoint = "v1/facts?limit=30";
     try {
       var data = await ApiProvider().getCall(endPoint);
       if (data['error'] != null) {
-        throw "error occured";
+        throw data["error"];
       }
       factsList = (data["result"] as List)
           .map((facts) => Facts.fromJson(facts))
